@@ -8,14 +8,14 @@ export class ImagenPipe implements PipeTransform {
 
   transform(value: Heroe, ...args: unknown[]): unknown {
     let url = "./assets/heroes"
-    if (value != null) {
+    if (!value.id && !value.alt_img) {
       // console.log(`${url}/${value}`)
-      return `${url}/${value.id}.jpg`
-    } else {
+      return `./assets/no-image.png`
+    } else if (value.alt_img) {
+      return value.alt_img;
 
-      return `${url}/no-imagen.png`
     }
-
+    return `${url}/${value.id}.jpg`
   }
 
 }
